@@ -147,6 +147,7 @@ body {
 .método-separado {
   text-align: center;
   color: darkblue;
+  margin-right: 5em;
 }
 h6 {
   font-size: 1.125rem;
@@ -158,6 +159,7 @@ h6 {
   border-bottom: 2px solid #dcdee0;
   margin-top: 30px;
   padding-bottom: 20px;
+  display: none;
 }
 
 .footer {
@@ -169,7 +171,7 @@ h6 {
   left: 0;
   bottom: 0;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 5em;
 }
 
 .imagen-animada {
@@ -215,7 +217,7 @@ h6 {
   cursor: pointer;
 }
 
-.método-nuevo input[type = 'submit'] {
+.submit {
 
   border-radius: 12px;
   border: none;
@@ -228,8 +230,33 @@ h6 {
 
 }
 
-.método-nuevo input[type = 'submit']:hover {
+.submit:hover {
   background-color: #878eed;
   color: white;
 }
 
+.method-selection {
+  display: flex;
+  justify-content: center;
+}
+
+.enable {
+  align-self: center;
+  background-color: #878eed;
+  color: white;
+  padding: 1.2em;
+
+}
+
+.enable:hover {
+  color: #878eed;
+  background-color: #dcdee0;
+  font-weight: bolder;
+}
+
+.método-nuevo-base {
+
+  margin-top: 30px;
+  padding-bottom: 20px;
+
+}
