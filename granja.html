@@ -5,9 +5,11 @@
     </title>
 
     <link rel = 'stylesheet' href = 'style.css'>
+
   </head>
 
   <body>
+
     <div class = 'principal'>
       <div class = 'principal1'> 
         <h1 class = 'header'>
@@ -41,11 +43,15 @@
     </div>
 
     <div class = 'granja-métodos'>
-      <div class = 'método-nuevo' id = 'crear-animal'>
+      <div class = 'método-nuevo-base' id = 'base'>
         <div class = 'description'>
-          <h2 class = 'método-separado'>
-            Crear Granja
-          </h2>
+          <div class = 'method-selection'>
+            <h2 class = 'método-separado'>
+              Crear Granja
+            </h2>
+          </div>
+
+          
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam sit porro! Nulla deserunt atque, eligendi ad expedita culpa commodi sequi impedit quia alias, assumenda quod magnam doloremque quas facilis.
@@ -53,66 +59,64 @@
           </p>
         </div>
 
-        <div class = 'form'>
-          <div class = 'dato'>
+        <form class = 'form'>
+          <div class = 'dato'> 
             <h6> Nombre </h6>
-            <form>
-              <label id = 'crear-granja-nombre'>
-                <input type = 'text' name = 'crear-granja-nombre' required>
-              </label>
-            </form>
+
+            <label id = 'crear-granja-nombre'>
+              <input type = 'text' name = 'crear-granja-nombre' required>
+            </label>
           </div>
 
           <div class = 'dato'>
             <h6> Tipos de Animal </h6>
-            <form>
-              <label id = 'crear-granja-tipo-animal'>
-                <input type = 'text' name = 'crear-granja-tipo-animal' required>
-              </label>
-            </form>
-          </div>
 
+            <label id = 'crear-granja-tipo-animal'>
+              <input type = 'text' name = 'crear-granja-tipo-animal' required>
+            </label>
+          </div>
+            
           <div class = 'dato'>
             <h6> Empleados </h6>
-            <form>
-              <label id = 'crear-granja-empleados'>
-                <input type = 'text' name = 'crear-granja-empleados' required>
-              </label>
-            </form>
+
+            <label id = 'crear-granja-empleados'>
+              <input type = 'text' name = 'crear-granja-empleados' required>
+            </label>
           </div>
 
           <div class = 'dato'>
             <h6> Salarios </h6>
-            <form>
-              <label id = 'crear-granja-salarios'>
-                <input type = 'text' name = 'crear-granja-salarios' required>
-              </label>
-            </form>
+          
+            <label id = 'crear-granja-salarios'>
+              <input type = 'text' name = 'crear-granja-salarios' required>
+            </label>
           </div>
-
+          
           <div class = 'dato'>
             <h6> Dinero Inicial </h6>
-            <form>
-              <label id = 'crear-granja-dinero-inicial'>
-                <input type = 'text' name = 'crear-granja-dinero-inicial' required>
-              </label>
-            </form>
+      
+            <label id = 'crear-granja-dinero-inicial'>
+              <input type = 'text' name = 'crear-granja-dinero-inicial' required>
+            </label>
           </div>
+    
+          <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
 
-          <div class = 'submit-datos'>
-            <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
 
-          </div>
-
-        </div>
-
+        </form>
       </div>
 
       <div class = 'método-nuevo' id = 'comprar-alimento'>
         <div class = 'description'>
-          <h2 class = 'método-separado'>
-            Comprar Alimento
-          </h2>
+          <div class = 'method-selection'>
+            <h2 class = 'método-separado'>
+              Comprar Alimento
+            </h2>
+
+            <button class = 'enable'> 
+              ENABLE
+            </button>
+          </div>
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam sit porro! Nulla deserunt atque, eligendi ad expedita culpa commodi sequi impedit quia alias, assumenda quod magnam doloremque quas facilis.
@@ -120,74 +124,88 @@
           </p>
         </div>
 
-        <div class = 'form'>
+        <form class = 'form'>
           <div class = 'dato'> 
             <h6> Tipo de Animal </h6>
-            <form>
-              <label id = 'comprar-alimento-tipo-animal'>
-                <input type = 'text' name = 'comprar-alimento-tipo-animal' required>
-              </label>
-            </form> 
+            
+            <label id = 'comprar-alimento-tipo-animal'>
+              <input type = 'text' name = 'comprar-alimento-tipo-animal' required>
+            </label>
+            
           </div>
 
           <div class = 'dato'>
             <h6> Cantidad </h6>
-            <form>
-              <label id = 'comprar-alimento-cantidad'>
-                <input type = 'text' name = 'comprar-alimento-cantidad' required>
-              </label>
-            </form>
+            
+            <label id = 'comprar-alimento-cantidad'>
+              <input type = 'text' name = 'comprar-alimento-cantidad' required>
+            </label>
+            
           </div>
 
           <div class = 'dato'>
             <h6> Calidad </h6>
-            <form>
-              <label id = 'comprar-alimento-calidad'>
-                <input type = 'text' name = 'comprar-alimento-calidad' required>
-              </label>
-            </form>
+            
+            <label id = 'comprar-alimento-calidad'>
+              <input type = 'text' name = 'comprar-alimento-calidad' required>
+            </label>
+            
           </div>
 
-          <div class = 'submit-datos'>
-            <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
-
-          </div>
-        </div>
+          
+          <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
+          
+        </form>
       </div>
 
       <div class = 'método-nuevo' id = 'comprar-agua'>
         <div class = 'description'>
-          <h2 class = 'método-separado'>
-            Comprar Agua
-          </h2>
+          <div class = 'method-selection'>
+            <h2 class = 'método-separado'>
+              Comprar Agua
+            </h2>
 
+            <button class = 'enable'>
+              ENABLE
+            </button>
+
+          </div>
+      
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam sit porro! Nulla deserunt atque, eligendi ad expedita culpa commodi sequi impedit quia alias, assumenda quod magnam doloremque quas facilis.
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas dolor omnis unde odit dicta! Impedit minus neque assumenda provident! Alias fuga fugiat excepturi voluptas obcaecati commodi numquam ipsa tempora aliquid!
           </p>
         </div>
 
-        <div class = 'form'>
+        <form class = 'form'>
           <div class = 'dato'>
             <h6> Cantidad de Litros </h6>
-            <form>
-              <label id = 'comprar-agua-cantidad'>
-                <input type = 'text' name = 'comprar-agua-cantidad' required>
-              </label>
-            </form>
+            
+            <label id = 'comprar-agua-cantidad'>
+              <input type = 'text' name = 'comprar-agua-cantidad' required>
+            </label>
+          
           </div>
 
-          <div class = 'submit-datos'>
-            <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
-          </div>
-        </div>
+          
+          <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
+          
+        </form>
       </div>
 
       <div class = 'método-nuevo' id = 'dar-agua'>
         <div class = 'description'>
-          <h2 class = 'método-separado'>
-            Dar Agua
-          </h2>
+          <div class = 'method-selection'>
+            <h2 class = 'método-separado'>
+              Dar Agua
+            </h2>
+
+            <button class = 'enable'>
+              ENABLE
+            </button>
+
+          </div>
+      
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam sit porro! Nulla deserunt atque, eligendi ad expedita culpa commodi sequi impedit quia alias, assumenda quod magnam doloremque quas facilis.
@@ -195,65 +213,80 @@
           </p>
         </div>
 
-        <div class = 'form'>
+        <form class = 'form'>
           <div class = 'dato'>
             <h6> Animal </h6>
-            <form>
-              <label id = 'dar-agua-tipo-animal'>
-                <input type = 'text' name = 'dar agua-tipo-animal' required>
-              </label>
-            </form>
+            
+            <label id = 'dar-agua-tipo-animal'>
+              <input type = 'text' name = 'dar agua-tipo-animal' required>
+            </label>
+            
           </div>
 
-          <div class = 'submit-datos'>
-            <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
-          </div>
-        </div>
+          
+          <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
+          
+        </form>
         
       </div>
 
       <div class = 'método-nuevo' id = 'alimentar'>
         <div class = 'description'>
-          <h2 class = 'método-separado'>
-            Alimentar
-          </h2>
+          <div class = 'method-selection'>
+            <h2 class = 'método-separado'>
+              Alimentar
+            </h2>
 
+            <button class = 'enable'>
+              ENABLE
+            </button>
+
+          </div>
+      
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam sit porro! Nulla deserunt atque, eligendi ad expedita culpa commodi sequi impedit quia alias, assumenda quod magnam doloremque quas facilis.
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas dolor omnis unde odit dicta! Impedit minus neque assumenda provident! Alias fuga fugiat excepturi voluptas obcaecati commodi numquam ipsa tempora aliquid!
           </p>
         </div>
 
-        <div class = 'form'>
+        <form class = 'form'>
            <div class = 'dato'>
             <h6> Animal </h6>
-            <form>
-              <label id = 'alimentar-tipo-animal'>
-                <input type = 'text' name = 'alimentar-tipo-animal' required>
-              </label>
-            </form>
+           
+            <label id = 'alimentar-tipo-animal'>
+              <input type = 'text' name = 'alimentar-tipo-animal' required>
+            </label>
+            
           </div> 
 
           <div class = 'dato'>
             <h6> Calidad </h6>
-            <form>
-              <label id = 'alimentar-calidad'>
-                <input type = 'text' name = 'alimentar-calidad' required>
-              </label>
-            </form>
+            
+            <label id = 'alimentar-calidad'>
+              <input type = 'text' name = 'alimentar-calidad' required>
+            </label>
+            
           </div>
 
-          <div class = 'submit-datos'>
-            <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
-          </div>
-        </div>
+          
+          <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
+          
+        </form>
       </div>
 
       <div class = 'método-nuevo' id = 'vender-producto'>
         <div class = 'description'>
-          <h2 class = 'método-separado'>
-            Vender Producto
-          </h2>
+          <div class = 'method-selection'>
+            <h2 class = 'método-separado'>
+              Vender Producto
+            </h2>
+
+            <button class = 'enable'>
+              ENABLE
+            </button>
+
+          </div>
+      
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam sit porro! Nulla deserunt atque, eligendi ad expedita culpa commodi sequi impedit quia alias, assumenda quod magnam doloremque quas facilis.
@@ -261,37 +294,45 @@
           </p>
         </div>
 
-        <div class = 'form'> 
+        <form class = 'form'> 
            <div class = 'dato'>
             <h6> Animal </h6>
-            <form>
-              <label id = 'vender-producto-tipo-animal'>
-                <input type = 'text' name = 'vender-producto-tipo-animal' required>
-              </label>
-            </form>
+            
+            <label id = 'vender-producto-tipo-animal'>
+              <input type = 'text' name = 'vender-producto-tipo-animal' required>
+            </label>
+            
           </div> 
 
           <div class = 'dato'>
             <h6> Cantidad </h6>
-            <form>
-              <label id = 'vender-producto-cantidad'>
-                <input type = 'text' name = 'vender-producto-cantidad' required>
-              </label>
-            </form>
+            
+            <label id = 'vender-producto-cantidad'>
+              <input type = 'text' name = 'vender-producto-cantidad' required>
+            </label>
+            
           </div>
 
-          <div class = 'submit-datos'>
-            <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
-          </div>
-        </div>
+        
+          <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
+          
+        </form>
         
       </div>
 
       <div class = 'método-nuevo' id = 'comprar-animal'>
         <div class = 'description'>
-          <h2 class = 'método-separado'>
-            Comprar Animal
-          </h2>
+          <div class = 'method-selection'>
+            <h2 class = 'método-separado'>
+              Comprar Animal
+            </h2>
+
+            <button class = 'enable'>
+              ENABLE
+            </button>
+
+          </div>
+      
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam sit porro! Nulla deserunt atque, eligendi ad expedita culpa commodi sequi impedit quia alias, assumenda quod magnam doloremque quas facilis.
@@ -299,74 +340,82 @@
           </p>
         </div>
 
-        <div class = 'form'>
+        <form class = 'form'>
           <div class = 'dato'>
             <h6> Animal </h6>
-            <form>
-              <label id = 'comprar-animal-tipo-animal'>
-                <input type = 'text' name = 'comprar-animal-tipo-animal' required>
-              </label>
-            </form>
+            
+            <label id = 'comprar-animal-tipo-animal'>
+              <input type = 'text' name = 'comprar-animal-tipo-animal' required>
+            </label>
+            
           </div> 
 
           <div class = 'dato'>
             <h6> Cantidad </h6>
-            <form>
-              <label for = 'id1'> </label>
+            
+            <label for = 'comprar-animal-cantidad'> 
               <input type = 'text' id = 'id1'>
-            </form>
+
+            </label>
+    
           </div> 
 
           <div class = 'dato'>
             <h6> Productos del Animal </h6>
-            <form>
-              <label id = 'comprar-animal-cantidad'>
-                <input type = 'text' name = 'comprar-animal-cantidad' required>
-              </label>
-            </form>
+            
+            <label id = 'comprar-animal-productos'>
+              <input type = 'text' name = 'comprar-animal-productos' required>
+            </label>
+            
           </div>
 
           <div class = 'dato'>
             <h6> Tipo o Raza </h6>
-            <form>
-              <label id = 'comprar-animal-raza-animal'>
-                <input type = 'text' name = 'comprar-animal-raza-animal' required>
-              </label>
-            </form>
+            
+            <label id = 'comprar-animal-raza-animal'>
+              <input type = 'text' name = 'comprar-animal-raza-animal' required>
+            </label>
+            
           </div>
 
           <div class = 'dato'>
             <h6> Género </h6>
-            <form>
-              <label id = 'comprar-animal-género'>
-                <input type = 'text' name = 'comprar-animal-tipo-género' required>
-              </label>
-            </form>
+            
+            <label id = 'comprar-animal-género'>
+              <input type = 'text' name = 'comprar-animal-género' required>
+            </label>
+            
           </div>
 
           <div class = 'dato'>
             <h6> Peso </h6>
-            <form>
-              <label id = 'comprar-animal-peso'>
-                <input type = 'text' name = 'comprar-animal-peso' required>
-              </label>
-            </form>
+            
+            <label id = 'comprar-animal-peso'>
+              <input type = 'text' name = 'comprar-animal-peso' required>
+            </label>
+            
           </div>
 
-          <div class = 'submit-datos'>
-            <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
+          
+          <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
 
-          </div>
-
-        </div>
+        </form>
 
       </div>
       
       <div class = 'método-nuevo' id = 'vender-animal'>
         <div class = 'description'>
-          <h2 class = 'método-separado'>
-            Vender Animal
-          </h2>
+          <div class = 'method-selection'>
+            <h2 class = 'método-separado'>
+              Vender Animal
+            </h2>
+
+            <button class = 'enable'>
+              ENABLE
+            </button>
+
+          </div>
+      
 
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo veniam sit porro! Nulla deserunt atque, eligendi ad expedita culpa commodi sequi impedit quia alias, assumenda quod magnam doloremque quas facilis.
@@ -374,72 +423,70 @@
           </p>
         </div> 
 
-        <div class = 'form'>
+        <form class = 'form'>
           <div class = 'dato'>
             <h6> Animal </h6>
-            <form>
-              <label id = 'vender-animal-tipo-animal'>
-                <input type = 'text' name = 'vender-animal-tipo-animal' required>
-              </label>
-            </form>
+            
+            <label id = 'vender-animal-tipo-animal'>
+              <input type = 'text' name = 'vender-animal-tipo-animal' required>
+            </label>
+          
           </div> 
 
           <div class = 'dato'>
             <h6> Cantidad </h6>
-            <form>
-              <label id = 'vender-animal-cantidad'>
-                <input type = 'text' name = 'vender-animal-cantidad' required>
-              </label>
-            </form>
+            
+            <label id = 'vender-animal-cantidad'>
+              <input type = 'text' name = 'vender-animal-cantidad' required>
+            </label>
+            
           </div> 
 
           <div class = 'dato'>
             <h6> Productos del Animal </h6>
-            <form>
-              <label id = 'vender-animal-productos'>
-                <input type = 'text' name = 'vender-animal-productos' required>
-              </label>
-            </form>
+            
+            <label id = 'vender-animal-productos'>
+              <input type = 'text' name = 'vender-animal-productos' required>
+            </label>
+            
           </div>
 
           <div class = 'dato'>
             <h6> Tipo o Raza </h6>
-            <form>
-              <label id = 'vender-animal-raza-animal'>
-                <input type = 'text' name = 'vender-animal-raza-animal' required>
-              </label>
-            </form>
+            
+            <label id = 'vender-animal-raza-animal'>
+              <input type = 'text' name = 'vender-animal-raza-animal' required>
+            </label>
+            
           </div>
 
           <div class = 'dato'>
             <h6> Género </h6>
-            <form>
-              <label id = 'vender-animal-género'>
-                <input type = 'text' name = 'vender-animal-tipo-género' required>
-              </label>
-            </form>
+            
+            <label id = 'vender-animal-género'>
+              <input type = 'text' name = 'vender-animal-tipo-género' required>
+            </label>
+          
           </div>
 
           <div class = 'dato'>
             <h6> Peso </h6>
-            <form>
-              <label id = 'vender-animal-peso'>
-                <input type = 'text' name = 'vender-animal-peso' required>
-              </label>
-            </form>
+            
+            <label id = 'vender-animal-peso'>
+              <input type = 'text' name = 'vender-animal-peso' required>
+            </label>
+            
           </div>
 
-          <div class = 'submit-datos'>
-            <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
+          
+          <input class = 'submit' type = 'submit' value = 'submit' name 'submit'>
 
-          </div>
- 
-        </div>
+        </form>
       </div>
     
 
 
-    <div class = 'attributes'>
+    <div class = 'método-nuevo'>
         <div class = 'description'>
           <h2 class = 'método-separado'>
             Atributos del Animal
@@ -518,5 +565,33 @@
        </ul>
       </div>
     </div>
+
+    <script> 
+
+      const main = document.querySelector(".granja-métodos");
+      const method2 = main.querySelectorAll(".método-nuevo");
+      const method = main.querySelector("#base");
+      const form = method.querySelector(".form");
+      const submit = form.querySelector(".submit");
+      
+      function getData(e) {
+        e.preventDefault();
+
+        var data = new FormData(form);
+
+        method.style.borderBottom = '2px solid #dcdee0';
+
+        for (i = 0; i < method2.length; i++) {
+          method2[i].style.display = 'block';
+        }
+        
+
+        
+      }
+      
+      document.addEventListener('DOMContentLoaded', function() {
+        submit.addEventListener('click', getData, false);
+      }, false);
+    </script>
   </body>
 </html>
