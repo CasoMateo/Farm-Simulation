@@ -162,6 +162,9 @@ h6 {
   display: none;
 }
 
+.método-nuevo:last-child {
+  border-bottom: none;
+}
 .footer {
   background-color: #878eed;
   color: white;
@@ -259,4 +262,15 @@ h6 {
   margin-top: 30px;
   padding-bottom: 20px;
 
+}
+
+.submit-vaca {
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  outline-offset: 10px;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #878eed;
+  padding: .25em;
 }
