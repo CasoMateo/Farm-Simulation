@@ -1,207 +1,27 @@
+import {Vaca} from './scriptvaca.js';
+import {Gallina} from './scriptgallina.js';
+import {Oveja} from './scriptoveja.js';
+
 const main = document.querySelector(".granja-métodos");
 const methods = main.querySelectorAll(".método-nuevo");
 const basis = main.querySelector("#base");
 const form = basis.querySelector(".form");
 const submit = form.querySelector(".submit");
 
-const vaca = document.querySelector('.vaca-métodos');
-const vaca_methods = vaca.querySelectorAll('.método-nuevo');
-const crear_vaca = vaca.querySelector('#crear-vaca');
-const vaca_form = crear_vaca.querySelector('.form');
-const vaca_submit = vaca_form.querySelector('#submit-crear-vaca');
+const vaca = new Vaca();
+const oveja = new Oveja();
+const gallina = new Gallina();
 
-const oveja = document.getElementById('crear-oveja');
-const oveja_methods = oveja.querySelectorAll('método-nuevo');
-const crear_oveja = oveja.getElementById('crear-oveja');
-const oveja_form = crear_oveja.querySelector('#crear-oveja-form');
-const oveja_submit = crear_oveja.querySelector('#submit-oveja-form');
+const animals_at = document.getElementById('tipos-animal');
+const empleados_at = document.getElementById('empleados');
+const salarios_at = document.getElementById('salarios');
+const ganancias_at = document.getElementById('ganancias');
+const gastos_at = document.getElementById('gastos');
+const dinero_at = document.getElementById('dinero-total');
+const niveles_alimento_at = document.getElementById('niveles-alimento');
+const niveles_agua_at = document.getElementById('niveles-agua');
 
-const gallina = document.getElementById('crear-gallina');
-const gallina_methods = gallina.querySelectorAll('método-nuevo');
-const crear_gallina = gallina.getElementById('crear-gallina');
-const gallina_form = crear_gallina.querySelector('#crear-gallina-form');
-const gallina_submit = crear_gallina.querySelector('#submit-crear-oveja');
 
-const animals = document.getElementById('tipos-animal');
-
-class Animal {
-  // hacer clase abstracta
-	constructor() {
-	  if (new.target === Animal) {
-	    throw new Error('Abstract class cannot be instantiated');
-	  }		
-    this.nivel_alimentación_ = 0;
-  	this.producto_ = 0;
-  	this.cantidad_ = 0;
-  	this.hidratado_ = false;
-  	this.alimentado_ = false;
-  }
-  
-  hacer_sonido() {
-    // toggle class alimentado
-    // hacer sonido
-    if (this.alimentado_) {
-      console.log(this.sonido_);
-      this.alimentado_ = false;
-    } else {
-      console.log('No estoy alimentado');
-    }
-  }
-  
-  mover() {
-    // toggle class alimentado
-    // moverse
-    if (this.alimentado_) {
-      console.log(this.nombre_, 'se está moviendo');
-      this.alimentado_ = false;
-    } else {
-      console.log('No estoy alimentado');
-    }
-  }
-  
-  hidratado() {
-    // toggle class hidratado
-    // saltar
-    if (this.hidratado_) {
-      console.log(this.nombre_, 'está saltando porque está hidratado');
-      this.hidratado_ = false;
-    } else {
-      console.log('No estoy hidratado');
-    }
-    
-  }
-  
-  reproducir(edad1, edad2, género1, género2, cantidad, nombre_granja) {
-    if (this.cantidad_ >= 2) {
-      if (edad1 > 12 && edad2 > 12) {
-        if (género1 != género2) {
-          this.cantidad_ += cantidad;
-        }
-      }
-      
-    }
-    
-    nombre_granja.gastos_ += this.precio_reja_ * cantidad;
-    nombre_granja.dinero_ -= this.precio_reja_ * cantidad;
-    
-    return this.cantidad_;
-    
-  }
-  
-  precio() {
-    console.log('Este es el precio del animal');
-  }
-
-  set nombre(new_nombre) {
-    this.nombre = new_nombre;
-  }
-
-  set color(new_color) {
-    this.color = new_color;
-  }
-
-  set sonido(new_sonido) {
-    this.sonido = new_sonido;
-  }
-
-  set alimento(new_alimento) {
-    this.alimento = new_alimento;
-  }
-
-  set precio_alimento(new_precio_alimento) {
-    this.precio_alimento = new_precio_alimento;
-  }
-
-  set límite_producto(new_límite_producto) {
-    this.límite_producto = new_límite_producto;
-  }
-
-  set precio_producto(new_precio_producto) {
-    this.precio_producto = new_precio_producto;
-  }
-
-  set precio_reja(new_precio_reja) {
-    this.precio_reja = new_precio_reja;
-  }
-
-  set agua(new_agua) {
-    this.agua = new_agua;
-  }
-
-}
-
-class Vaca extends Animal {
-  
-  constructor() {
-    
-      this.nivel_alimentación_= 0;
-      this.cantidad_ = 0;
-      this.producto_ = 0;
-  	  this.hidratado_ = false;
-  	  this.alimentado_ = false;
-    } 
-  
-  
-  precio(productos, tipo, género, peso) {
-    let precio_ = peso;
-    
-    if (género == 'm') {
-      precio_ += 50;
-    }
-    
-    return precio_;
-    
-  }
-  
-}
-
-class Gallina extends Animal {
-  static tipos_gallinas_ = {'Plymouth Rock': 20, 'Orpington': 30, 'Brahma': 25, 'Cochin': 35, 'Blak Plateada': 50};
-  
-  constructor() {
-      
-      this.nivel_alimentación_= 0;
-      this.cantidad_ = 0;
-      this.producto_ = 0;
-      this.hidratado_ = false;
-  	  this.alimentado_ = false;
-    } 
-  
-  precio(productos, tipo, género, peso) {
-    let precio_ = 200;
-    
-    if (género == 'h') {
-      precio_ += 50;
-    }
-    
-    precio_ += Gallina.tipos_gallinas_[tipo];
-    
-    return precio_;
-    
-  }
-}
-
-class Oveja extends Animal {
-    constructor() {
-  
-      this.nivel_alimentación_= 0;
-      this.cantidad_ = 0;
-      this.producto_ = 0;
-      this.hidratado_ = false;
-  	  this.alimentado_ = false;
-    } 
-    
-    precio(productos, tipo, género, precio) {
-      let precio_ = 350;
-      
-      precio_ -= this.límite_producto_ / productos;
-      
-      return precio_;
-      
-    }
-  }
-
-    
 class Granja {
   static tipos_alimentos = {'alta-calidad': 3, 'regular': 2, 'baja-calidad': 1};
 
@@ -234,79 +54,6 @@ class Granja {
   }
 }
 
-function getDataVaca(e) {
-
-  var data = new FormData(vaca_form);
-
-  e.preventDefault();
-
-  alert(data.get('crear-vaca-nombre'));
-
-  for (i = 0; i < vaca_methods.length; i++) {
-    vaca_methods.style.display = 'block';
-  }
-
-  Vaca.nombre = data.get('crear-vaca-nombre');
-  Vaca.color = data.get('crear-vaca-color');
-  Vaca.sonido = data.get('crear-vaca-sonido');
-  Vaca.alimento = data.get('crear-vaca-alimento');
-  Vaca.precio_alimento = data.get('crear-vaca-precio-alimento');
-  Vaca.límite_producto = data.get('crear-vaca-límite-producto'));
-  Vaca.precio_producto = data.get('crear-vaca-precio-producto');
-  Vaca.precio_reja = data.get('crear-vaca-precio-reja');
-  Vaca.agua = data.get('crear-vaca-agua');
-
-} 
-
-function getDataOveja(e) {
-  var data = new FormData(oveja_form);
-
-  e.preventDefault();
-
-  alert(data.get('crear-oveja-nombre'));
-
-  crear_oveja.style.borderBottom = '2px solid  #dcdee0
-  
-  for (i = 0; i < oveja_methods.length; i++) {
-    oveja_methods[i].style.display = 'block';
-  }
-
-  Oveja.nombre = data.get('crear-oveja-nombre');
-  Oveja.color = data.get('crear-oveja-color');
-  Oveja.sonido = data.get('crear-oveja-sonido');
-  Oveja.alimento = data.get('crear-oveja-alimento');
-  Oveja.precio_alimento = data.get('crear-oveja-precio-alimento');
-  Oveja.límite_producto = data.get('crear-oveja-límite-producto'));
-  Oveja.precio_producto = data.get('crear-oveja-precio-producto');
-  Oveja.precio_reja = data.get('crear-oveja-precio-reja');
-  Oveja.agua = data.get('crear-oveja-agua');
-}
-
-function getDataGallina(e) {
-  var data = new FormData(gallina_form);
-
-  e.preventDefault();
-
-  alert(data.get('crear-oveja-nombre'));
-
-  crear_gallina.style.borderBottom = '2px solid  #dcdee0'
-  
-  for (i = 0; i < gallina_methods.length; i++) {
-    gallina_methods[i].style.display = 'block';
-  }
-
-  Gallina.nombre = data.get('crear-gallina-nombre');
-  Gallina.color = data.get('crear-gallina-color');
-  Gallina.sonido = data.get('crear-gallina-sonido');
-  Gallina.alimento = data.get('crear-gallina-alimento');
-  Gallina.precio_alimento = data.get('crear-gallina-precio-alimento');
-  Gallina.límite_producto = data.get('crear-gallina-límite-producto'));
-  Gallina.precio_producto = data.get('crear-gallina-precio-producto');
-  Gallina.precio_reja = data.get('crear-gallina-precio-reja');
-  Gallina.agua = data.get('crear-gallina-agua');
-
-}
-
 
 function getDataGranja(e) {
 
@@ -331,26 +78,216 @@ function getDataGranja(e) {
 
 }
 
-
 function comprarAlimento(event) {
   event.preventDefault();
-  var data = new FormData(document.getElementById('comprar-alimento-form'));
+  var data = new FormData(document.getElementById('comprar-agua-form'));
 
-  alert(data.get('comprar-alimento-cantidad'));
+  if (!(data.get('comprar-alimento-tipo-animal') in Granja.tipos_animales_ )) {
+      return
+  }
+    
+  let alimento_precio = Granja.tipos_animales_[data.get('comprar-alimento-tipo-animal')].precio_alimento_ * data.get('comprar-alimento-cantidad') * Granja.tipos_alimentos_[data.get('comprar-alimento-calidad')];
+  
+  if (alimento_precio + Granja.empleados_ * Granja.salarios_ <= Granja.dinero_) {
+    Granja.dinero_ -= alimento_precio;
+    Granja.gastos_ += alimento_precio;
+    Granja.alimentos_[data.get('comprar-alimento-calidad')] += data.get('comprar-alimento-cantidad');
+    Granja.gastos_ += Granja.empleados_ * Granja.salarios_;
+		Granja.dinero_ -= Granja.empleados_ * Granja.salarios_;
+  } else {
+      alert('NO HAY SUFICIENTE DINERO');
+  }
+
 }
 
+function comprarAgua(event) {
+  event.preventDefault();
+  var data = new FormData(document.getElementById('comprar-agua-form'));
 
-  animals.addEventListener('mouseover', function() {
-    animals.innerText = Granja.nombre;
+  if (data.get('comprar-agua-cantidad') * Granja.litro_agua <= Granja.dinero_ && Granja.empleados_ * Granja.salarios_ <= Granja.dinero_) {
+    Granja.dinero_ -= data.get('comprar-agua-cantidad-litros') * Granja.litro_agua;
+    Granja.gastos_ += data.get('comprar-agua-cantidad-litros') * Granja.litro_agua;
+    Granja.contenedor_agua_ += data.get('comprar-agua-cantidad-litros');
+    Granja.dinero_ -= Granja.empleados_ * Granja.salarios_;
+    Granja.gastos_ += Granja.empleados_ * Granja.salarios_;
+
+  } else {
+    alert('NO HAY SUFICIENTE DINERO ');
+  }
+
+}
+
+function darAgua(event) {
+  event.preventDefault();
+  var data = new FormData(document.getElementById('dar-agua-form'));
+
+
+  if (!(data.get('dar-agua-tipo-animal') in Granja.tipos_animales_)) {
+    return
+  }
+    
+  if (Grana.tipos_animales_[data.get('dar-agua-tipo-animal')].agua_ * Granja.tipos_animales_[data.get('dar-agua-tipo-animal')].cantidad_ <= Granja.contenedor_agua_ ) {
+    Granja.tipos_animales_[data.get('dar-agua-tipo-animal')].hidratado_ = true;
+    Granja.contenedor_agua_ -= Granja.tipos_animales_[data.get('dar-agua-tipo-animal')].agua_ * Granja.tipos_animales_[data.get('dar-agua-tipo-animal')].cantidad_;
+      
+  } else {
+    alert('NO HAY SUFICIENTE AGUA');
+  }
+
+}
+
+function alimentar(event) {
+  event.preventDefault();
+  var data = new FormData(document.getElementById('alimentar-form'));
+
+  if (!(data.get('alimentar-tipo-animal') in Granja.tipos_animales_)) {
+    return
+  }
+    
+	if (Granja.tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_ <= Granja.alimentos_[data.get('alimentar-calidad')] && Granja.dinero_ >= Granja.empleados_ * Granja.salarios_) {
+		  
+		Granja.tipos_animales_[data.get('alimentar-tipo-animal')].nivel_alimentación_ += Granja.tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_ + Granja.tipos_alimentos_[data.get('alimentar-calidad')];
+		Granja.gastos_ += Granja.empleados_ * Granja.salarios_;
+		Granja.dinero_ -= Granja.empleados_ * Granja.salarios_;
+		Granja.alimentos_['alimentar-calidad'] -= Granja.tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_;
+		
+		if (Granja.tipos_animales_[data.get('alimentar-tipo-animal')].nivel_alimentación_ >= Granja.tipos_animales_[data.get('alimentar-tipo-animal')].alimento_ * Granja.tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_) {
+		  Granja.tipos_animales_[data.get('alimentar-tipo-animal')].producto_ += Granja.tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_;
+		  Granja.tipos_animales_[data.get('alimentar-tipo-animal')].nivel_alimentación_ -= Granja.tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_;
+		  Granja.tipos_animales_[data.get('alimentar-tipo-animal')].alimentado_ = true;
+		}
+	} else {
+		alert('NO HAY SUFICIENTES ALIMENTOS o DINERO');
+	}
+}
+
+function venderProducto(event) {
+  event.preventDefault();
+
+  var data = new FormData(document.getElementById('vender-producto-form'));
+
+  if (!(data.get('vender-producto-tipo-animal') in Granja.tipos_animales_ )) {
+    return
+  }
+    
+  if (Granja.tipos_animales_[data.get('vender-producto-tipo-animal')].producto_ >= data.get('vender-producto-cantidad') && Granja.dinero_ >= Granja.empleados_ * Granja.salarios_) {
+    Granja.tipos_animales_[data.get('vender-producto-tipo-animal')].producto_ -= data.get('vender-producto-cantidad');
+    Granja.ganancias_ += Granja.tipos_animales_[data.get('vender-producto-tipo-animal')].precio_producto_ * data.get('vender-producto-cantidad');
+    Granja.dinero_ += Granja.tipos_animales_[data.get('vender-producto-tipo-animal')].precio_producto_ * data.get('vender-producto-cantidad');
+  } else {
+    alert('NO HAY SUFICIENTES PRODUCTOS')
+  }
+
+}
+
+function comprarAnimal(event) {
+  event.preventDefault();
+
+  var data = new FormData(document.getElementById('comprar-animal-form'));
+
+
+  if (!(data.get('comprar-animal-tipo-animal') in Granja.tipos_animales_ )) {
+    return
+  }
+
+  if (Granja.tipos_animales_[data.get('comprar-animal-tipo-animal')].precio(data.get('vender-animal-tipo-animal')].precio(data.get('vender-animal-productos', data.get('vender-animal-raza'), data.get('vender-animal-género'), data.get('vender-animal-peso')) * data.get('comprar-animal-cantidad') + Granja.empleados_ * Granja.salarios_ <= Granja.dinero_) {
+    Granja.tipos_animales_[data.get('comprar-animal-tipo-animal')].cantidad_ += data.get('comprar-animal-cantidad');
+    Granja.dinero_ -= Granja.tipos_animales_[data.get('comprar-animal-tipo-animal')].precio(data.get('vender-animal-tipo-animal')].precio(data.get('vender-animal-productos', data.get('vender-animal-raza'), data.get('vender-animal-género'), data.get('vender-animal-peso')) * data.get('comprar-animal-cantidad') + Granja.salarios_ * Granja.empleados_;
+    Granja.gastos_ += Granja.tipos_animales_[data.get('comprar-animal-tipo-animal')].precio(data.get('vender-animal-tipo-animal')].precio(data.get('vender-animal-productos', data.get('vender-animal-raza'), data.get('vender-animal-género'), data.get('vender-animal-peso')) * data.get('comprar-animal-cantidad') + Granja.salarios_ * Granja.empleados_;
+    Granja.dinero_ -= Granja.tipos_animales_[data.get('comprar-animal-tipo-animal')].precio_reja_ * data.get('comprar-animal-cantidad');
+    Granja.gastos_ += Granja.tipos_animales_[data.get('comprar-animal-tipo-animal')].precio_reja_ * data.get('comprar-animal-cantidad');
+a
+  } else {
+    alert('NO HAY SUFICIENTE DINERO');
+  }
+    
+}
+
+function venderAnimal(event) {
+  event.preventDefault();
+
+  var data = new FormData(document.getElementById('vender-animal-form'));
+
+  if (!(data.get('vender-animal-tipo-animal') in Granja.tipos_animales_ )) {
+    return
+  }
+    
+  if (Granja.tipos_animales_[data.get('vender-animal-tipo-animal')].cantidad_  >= data.get('vender-animal-cantidad') && Granja.dinero_ >= Granja.empleados_ * Granja.salarios_) {
+    Granja.tipos_animales_[data.get('vender-animal-tipo-animal')].cantidad_ -= data.get('vender-animal-cantidad');
+    Granja.dinero_ += Granja.tipos_animales_[data.get('vender-animal-tipo-animal')].precio(data.get('vender-animal-tipo-animal')].precio(data.get('vender-animal-productos', data.get('vender-animal-raza'), data.get('vender-animal-género'), data.get('vender-animal-peso')) * data.get('vender-animal-cantidad');
+    Granja.ganancias_ += Granja.tipos_animales_[data.get('vender-animal-tipo-animal')].precio(data.get('vender-animal-productos', data.get('vender-animal-raza'), data.get('vender-animal-género'), data.get('vender-animal-peso')) * data.get('vender-animal-cantidad');
+    Granja.dinero_ += Granja.tipos_animales_[data.get('vender-animal-tipo-animal')].precio_reja_ * data.get('vender-animal-cantidad');
+    Granja.ganancias_ += Granja.tipos_animales_[data.get('vender-animal-tipo-animal')].precio_reja_ * data.get('vender-animal-cantidad');
+  } else {
+    alert('NO HAY SUFICIENTES ANIMALES');
+    } 
+  }
+
+  animals_at.addEventListener('mouseover', function() {
+    animals_at.innerText = Granja.tipos_animales;
   });
 
-  animals.addEventListener('mouseout', function() {
-    animals.innerText = 'Tipos de Animal';
+  animals_at.addEventListener('mouseout', function() {
+    animals_at.innerText = 'Tipos de Animal';
   });
+
+  empleados_at.addEventListener('mouseover', function() {
+    empleados_at.innerText = Granja.empleados;
+  });
+
+  empleados_at.addEventListener('mouseout', function() {
+    empleados_at.innerText = 'Empleados';
+  }); 
+
+  salarios_at.addEventListener('mouseover', function() {
+    salarios_at.innerText = Granja.salarios;
+  });
+
+  salarios_at.addEventListener('mouseout', function() {
+    salarios_at.innerText = 'Salarios';
+  }); 
+
+  ganancias_at.addEventListener('mouseover', function() {
+    ganancias_at.innerText = Granja.ganancias;
+  });
+
+  ganancias_at.addEventListener('mouseout', function() {
+    ganancias_at.innerText = 'Ganancias';
+  });
+
+  gastos_at.addEventListener('mouseover', function() {
+    gastos_at.innerText = Granja.gastos;
+  });
+
+  gastos_at.addEventListener('mouseout', function() {
+    gastos_at.innerText = 'Gastos';
+  });
+
+  dinero_at.addEventListener('mouseover', function() {
+    dinero_at.innerText = Granja.dinero;
+  });
+
+  dinero_at.addEventListener('mouseout', function() {
+    dinero_at.innerText = 'Dinero Total';
+  });
+
+  niveles_alimento_at.addEventListener('mouseover', function() {
+    niveles_alimento_at.innerText = Granja.alimentos;
+  });
+
+  niveles_alimento_at.addEventListener('mouseout', function() {
+    niveles_alimento_at.innerText = 'Niveles de Alimento';
+  }); 
+
+  niveles_agua_at.addEventListener('mouseover', function() {
+    niveles_agua_at.innerText = Granja.contenedor_agua;
+  });
+
+  niveles_agua_at.addEventListener('mouseout', function() {
+    niveles_agua_at.innerText = 'Niveles de Agua';
+  });
+
 
   document.addEventListener('DOMContentLoaded', function() {
     submit.addEventListener('click', getDataGranja, false);
-    vaca_submit.addEventListener('click', getDataVaca, false);
-    oveja_submit.addEventListener('click', getDataOveja, false);
-    gallina_submit.addEventListener('click', getDataGallina, false);
   }, false);
