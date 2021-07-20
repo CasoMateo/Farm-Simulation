@@ -11,7 +11,6 @@ localStorage.setItem('granja-gastos', JSON.stringify(0));
 localStorage.setItem('granja-alimentos', JSON.stringify({"alta-calidad": 0, "regular": 0, "baja-calidad": 0}));
 localStorage.setItem('granja-contenedor_agua', JSON.stringify(0));
 
-
 const animals_at = document.getElementById('tipos-animal');
 const empleados_at = document.getElementById('empleados');
 const salarios_at = document.getElementById('salarios');
@@ -20,8 +19,6 @@ const gastos_at = document.getElementById('gastos');
 const dinero_at = document.getElementById('dinero-total');
 const niveles_alimento_at = document.getElementById('niveles-alimento');
 const niveles_agua_at = document.getElementById('niveles-agua');
-
-let precios = {'vaca-': precioVaca(), 'oveja-': precioOveja(), 'gallina-': precioGallina()};
 
 function precioVaca(productos, tipo, género, peso) {
   let precio_ = peso;
@@ -57,6 +54,8 @@ function precioGallina(productos, tipo, género, peso) {
   return precio_;
 
 }
+
+let precios = {'vaca-': precioVaca, 'oveja-': precioOveja, 'gallina-': precioGallina};
 
 function getDataGranja(e) {
 
@@ -243,13 +242,13 @@ function comprarAnimal(event) {
     return
   }
 
-  if (tipos_animales_[data.get('comprar-animal-tipo-animal')].precio(data.get('comprar-animal-productos'), data.get('comprar-animal-raza'), data.get('comprar-animal-género'), data.get('comprar-animal-peso')) * data.get('comprar-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios') <= localStorage.getItem('granja-dinero')) {
+  if (precios[tipos_animales_[data.get('comprar-animal-tipo-animal')]](data.get('comprar-animal-productos'), data.get('comprar-animal-raza'), data.get('comprar-animal-género'), data.get('comprar-animal-peso')) * data.get('comprar-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios') <= localStorage.getItem('granja-dinero')) {
     tipos_animales_[data.get('comprar-animal-tipo-animal')].cantidad_ += data.get('comprar-animal-cantidad');
     let new_dinero = localStorage.getItem('granja-dinero');
-    new_dinero -= tipos_animales_[data.get('comprar-animal-tipo-animal')].precio(data.get('comprar-animal-productos'), data.get('comprar-animal-raza'), data.get('comprar-animal-género'), data.get('comprar-animal-peso')) * data.get('comprar-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
+    new_dinero -= precios[tipos_animales_[data.get('comprar-animal-tipo-animal')]](data.get('comprar-animal-productos'), data.get('comprar-animal-raza'), data.get('comprar-animal-género'), data.get('comprar-animal-peso')) * data.get('comprar-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
     localStorage.setItem('granja-dinero', JSON.stringify(new_dinero));
     let new_gastos = localStorage.getItem('granja-gastos');
-    new_gastos += tipos_animales_[data.get('comprar-animal-tipo-animal')].precio(data.get('comprar-animal-tipo-animal'), data.get('comprar-animal-productos'), data.get('comprar-animal-raza'), data.get('comprar-animal-género'), data.get('comprar-animal-peso')) * data.get('comprar-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
+    new_gastos += precios[tipos_animales_[data.get('comprar-animal-tipo-animal')]](data.get('comprar-animal-productos'), data.get('comprar-animal-raza'), data.get('comprar-animal-género'), data.get('comprar-animal-peso')) * data.get('comprar-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
     localStorage.setItem('granja-gastos', JSON.stringify(new_gastos));
     let dinero_final = localStorage.getItem('granja-dinero');
     dinero_final -= tipos_animales_[data.get('comprar-animal-tipo-animal')].precio_reja_ * data.get('comprar-animal-cantidad');
@@ -278,10 +277,10 @@ function venderAnimal(event) {
   if (tipos_animales_[data.get('vender-animal-tipo-animal')].cantidad_  >= data.get('vender-animal-cantidad') && localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios') <= localStorage.getItem('granja-dinero')) {
     tipos_animales_[data.get('vender-animal-tipo-animal')].cantidad_ -= data.get('vender-animal-cantidad');
     let new_dinero = localStorage.getItem('granja-dinero');
-    new_dinero += tipos_animales_[data.get('vender-animal-tipo-animal')].precio(data.get('vender-animal-productos'), data.get('vender-animal-raza'), data.get('vender-animal-género'), data.get('vender-animal-peso')) * data.get('vender-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
+    new_dinero += precios[tipos_animales_[data.get('vender-animal-tipo-animal')]](data.get('vender-animal-productos'), data.get('vender-animal-raza'), data.get('vender-animal-género'), data.get('vender-animal-peso')) * data.get('vender-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
     localStorage.setItem('granja-dinero', JSON.stringify(new_dinero));
     let new_ganancias = localStorage.getItem('granja-ganancias');
-    new_ganancias += tipos_animales_[data.get('vender-animal-tipo-animal')].precio(data.get('vender-animal-tipo-animal'), data.get('vender-animal-productos'), data.get('vender-animal-raza'), data.get('vender-animal-género'), data.get('vender-animal-peso')) * data.get('vender-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
+    new_ganancias += precios[tipos_animales_[data.get('vender-animal-tipo-animal')]](data.get('vender-animal-productos'), data.get('vender-animal-raza'), data.get('vender-animal-género'), data.get('vender-animal-peso')) * data.get('vender-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
     localStorage.setItem('granja-ganancias', JSON.stringify(new_ganancias));
     
     let dinero_final = localStorage.getItem('granja-dinero');
