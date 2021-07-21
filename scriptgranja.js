@@ -157,10 +157,10 @@ function darAgua(event) {
     return
   }
     
-  if (tipos_animales_[data.get('dar-agua-tipo-animal')].agua_ * tipos_animales_[data.get('dar-agua-tipo-animal')].cantidad_ <= localStorage.getItem('granja-contenedor_agua') {
-    tipos_animales_[data.get('dar-agua-tipo-animal')].hidratado_ = true;
+  if (localStorage.getItem(tipos_alimentos[data.get('dar-agua-tipo-animal')] + 'agua') * localStorage.getItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'cantidad') <= localStorage.getItem('granja-contenedor_agua') {
+    localStorage.setItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'hidratado', JSON.stringify(true));;
     let new_contenedor_agua = data.getItem('granja-contenedor_agua');
-    new_contenedor_agua -= tipos_animales_[data.get('dar-agua-tipo-animal')].agua_ * tipos_animales_[data.get('dar-agua-tipo-animal')].cantidad_;
+    new_contenedor_agua -= loclaStorage.getItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'agua') * localStorage.getItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'cantidad');
     localStorage.setItem('granja-contenedor_agua', JSON.stringify(new_contenedor_agua));
       
   } else {
@@ -180,21 +180,28 @@ function alimentar(event) {
     return
   }
     
-	if (tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_ <= alimentos_[data.get('alimentar-calidad')] && localStorage.getItem('granja-dinero') >= localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios')) {
+	if (localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad') <= alimentos_[data.get('alimentar-calidad')] && localStorage.getItem('granja-dinero') >= localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios')) {
 		  
-		tipos_animales_[data.get('alimentar-tipo-animal')].nivel_alimentación_ += tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_ + tipos_alimentos_[data.get('alimentar-calidad')];
+		let new_nivel_alimentación = localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'nivel_alimentación');
+    new_nivel_alimentación += localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad') + tipos_alimentos_[data.get('alimentar-calidad')];
+    localStorage.setItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'nivel_alimentación', JSON.stringify(new_nivel_alimentación));
     let new_gastos = localStorage.getItem('granja-gastos');
     new_gastos += localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
 		localStorage.setItem('granja-gastos', JSON.stringify(new_gastos));
     let new_dinero = localStorage.getItem('granja-dinero');
     new_dinero -= localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
 		localStorage.setItem('granja-dinero', new_dinero);
-		alimentos_['alimentar-calidad'] -= tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_;
+		alimentos_['alimentar-calidad'] -= localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad');
 		
-		if (tipos_animales_[data.get('alimentar-tipo-animal')].nivel_alimentación_ >= tipos_animales_[data.get('alimentar-tipo-animal')].alimento_ * tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_) {
-		  tipos_animales_[data.get('alimentar-tipo-animal')].producto_ += tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_;
-		  tipos_animales_[data.get('alimentar-tipo-animal')].nivel_alimentación_ -= tipos_animales_[data.get('alimentar-tipo-animal')].cantidad_;
-		  tipos_animales_[data.get('alimentar-tipo-animal')].alimentado_ = true;
+		if (localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'nivel_alimentación') >= localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'alimento') * localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad')) {
+      let new_producto = localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'producto');
+      new_producto += localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad');
+      localStorage.setItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'producto', JSON.stringify(new_producto));
+      let nivel_alimentación_final = localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'nivel_alimentación');
+      nivel_alimentación_final -= localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad');
+		  localStorage.setItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'nivel_alimentación', JSON.stringify(nivel_alimentación_final));
+      localStorage.setItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'alimentado', JSON.stringify(true));
+
 		}
 	} else {
 		alert('NO HAY SUFICIENTES ALIMENTOS o DINERO');
@@ -214,19 +221,19 @@ function venderProducto(event) {
     return
   }
     
-  if (tipos_animales_[data.get('vender-producto-tipo-animal')].producto_ >= data.get('vender-producto-cantidad') && localStorage.get('granja-dinero') >= localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios')) {
-    tipos_animales_[data.get('vender-producto-tipo-animal')].producto_ -= data.get('vender-producto-cantidad');
+  if (localStorage.getItem(tipos_animales_[data.get('vender-producto-tipo-animal')] + 'producto') >= data.get('vender-producto-cantidad') && localStorage.get('granja-dinero') >= localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios')) {
+    let new_producto = localStorage.getItem(tipos_animales_[data.get('vender-producto-tipo-animal')] + 'producto');
+    new_producto -= data.get('vender-producto-cantidad');
+    localStorage.setItem(tipos_animales_[data.get('vender-producto-tipo-animal')] + 'producto', JSON.stringify(new_producto));
     let new_ganancias = localStorage.getItem('granja-ganancias');
-    new_ganancias += tipos_animales_[data.get('vender-producto-tipo-animal')].precio_producto_ * data.get('vender-producto-cantidad');
+    new_ganancias += localStorage.getItem(tipos_animales_[data.get('vender-producto-tipo-animal')] + 'precio_producto') * data.get('vender-producto-cantidad');
     localStorage.setItem('granja-ganancias', JSON.stringify(new_ganancias));
     let new_dinero = localStorage.getItem('granja-dinero');
-    new_dinero +=  tipos_animales_[data.get('vender-producto-tipo-animal')].precio_producto_ * data.get('vender-producto-cantidad');
+    new_dinero +=  localStorage.getItem(tipos_animales_[data.get('vender-producto-tipo-animal')] + 'precio_producto') * data.get('vender-producto-cantidad');
     localStorage.setItem('granja-dinero', JSON.stringify(new_dinero));
   } else {
     alert('NO HAY SUFICIENTES PRODUCTOS')
   }
-
-
 
 }
 
@@ -243,7 +250,9 @@ function comprarAnimal(event) {
   }
 
   if (precios[tipos_animales_[data.get('comprar-animal-tipo-animal')]](data.get('comprar-animal-productos'), data.get('comprar-animal-raza'), data.get('comprar-animal-género'), data.get('comprar-animal-peso')) * data.get('comprar-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios') <= localStorage.getItem('granja-dinero')) {
-    tipos_animales_[data.get('comprar-animal-tipo-animal')].cantidad_ += data.get('comprar-animal-cantidad');
+    let new_cantidad = localStorage.getItem(tipos_animales_[data.get('comprar-animal-tipo-animal')] + 'cantidad');
+    new_cantidad += data.get('comprar-animal-cantidad');
+    localStorage.setItem(tipos_animales_[data.get('comprar-animal-tipo-animal')] + 'cantidad', JSON.stringify(new_cantidad));
     let new_dinero = localStorage.getItem('granja-dinero');
     new_dinero -= precios[tipos_animales_[data.get('comprar-animal-tipo-animal')]](data.get('comprar-animal-productos'), data.get('comprar-animal-raza'), data.get('comprar-animal-género'), data.get('comprar-animal-peso')) * data.get('comprar-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
     localStorage.setItem('granja-dinero', JSON.stringify(new_dinero));
@@ -251,10 +260,10 @@ function comprarAnimal(event) {
     new_gastos += precios[tipos_animales_[data.get('comprar-animal-tipo-animal')]](data.get('comprar-animal-productos'), data.get('comprar-animal-raza'), data.get('comprar-animal-género'), data.get('comprar-animal-peso')) * data.get('comprar-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
     localStorage.setItem('granja-gastos', JSON.stringify(new_gastos));
     let dinero_final = localStorage.getItem('granja-dinero');
-    dinero_final -= tipos_animales_[data.get('comprar-animal-tipo-animal')].precio_reja_ * data.get('comprar-animal-cantidad');
+    dinero_final -= localStorage.getItem(tipos_animales_[data.get('comprar-animal-tipo-animal')] + 'precio_reja') * data.get('comprar-animal-cantidad');
     localStorage.setItem('granja-dinero', JSON.stringify(dinero_final));
     let gastos_final = localStorage.getItem('granja-gastos');
-    gastos_final += tipos_animales_[data.get('comprar-animal-tipo-animal')].precio_reja_ * data.get('comprar-animal-cantidad');
+    gastos_final += localStorage.getItem(tipos_animales_[data.get('comprar-animal-tipo-animal')] + 'precio_reja') * data.get('comprar-animal-cantidad');
     localStorage.setItem('granja-gastos', JSON.stringify(gastos_final));
 
   } else {
@@ -275,7 +284,9 @@ function venderAnimal(event) {
   }
     
   if (tipos_animales_[data.get('vender-animal-tipo-animal')].cantidad_  >= data.get('vender-animal-cantidad') && localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios') <= localStorage.getItem('granja-dinero')) {
-    tipos_animales_[data.get('vender-animal-tipo-animal')].cantidad_ -= data.get('vender-animal-cantidad');
+    let new_cantidad = localStorage.getItem(tipos_animales_[data.get('vender-animal-tipo-animal')] + 'cantidad');
+    new_cantidad += data.get('vender-animal-cantidad');
+    localStorage.setItem(tipos_animales_[data.get('vender-animal-tipo-animal')] + 'cantidad', JSON.stringify(new_cantidad));
     let new_dinero = localStorage.getItem('granja-dinero');
     new_dinero += precios[tipos_animales_[data.get('vender-animal-tipo-animal')]](data.get('vender-animal-productos'), data.get('vender-animal-raza'), data.get('vender-animal-género'), data.get('vender-animal-peso')) * data.get('vender-animal-cantidad') + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
     localStorage.setItem('granja-dinero', JSON.stringify(new_dinero));
@@ -284,10 +295,10 @@ function venderAnimal(event) {
     localStorage.setItem('granja-ganancias', JSON.stringify(new_ganancias));
     
     let dinero_final = localStorage.getItem('granja-dinero');
-    dinero_final += tipos_animales_[data.get('vender-animal-tipo-animal')].precio_reja_ * data.get('vender-animal-cantidad');
+    dinero_final += localStorage.getItem(tipos_animales_[data.get('vender-animal-tipo-animal')] + 'precio_reja') * data.get('vender-animal-cantidad');
     localStorage.setItem('granja-dinero', JSON.stringify(dinero_final));
     let ganancias_final = localStorage.getItem('granja-ganancias');
-    ganancias_final += tipos_animales_[data.get('vender-animal-tipo-animal')].precio_reja_ * data.get('vender-animal-cantidad');
+    ganancias_final += localStorage.getItem(tipos_animales_[data.get('vender-animal-tipo-animal')] + 'precio_reja') * data.get('vender-animal-cantidad');
     localStorage.setItem('granja-gastos', JSON.stringify(ganancias_final));
     
   } else {
@@ -362,4 +373,3 @@ function venderAnimal(event) {
   document.addEventListener('DOMContentLoaded', function() {
     submit.addEventListener('click', getDataGranja, false);
   }, false);
-
