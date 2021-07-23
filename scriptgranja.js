@@ -94,21 +94,20 @@ function comprarAlimento(event) {
       return
   }
     
-  let alimento_precio = tipos_animales_[data.get('comprar-alimento-tipo-animal')].precio_alimento_ * data.get('comprar-alimento-cantidad') * tipos_alimentos[data.get('comprar-alimento-calidad')];
+  let alimento_precio = parseInt(localStorage.getItem(tipos_animales_[data.get('comprar-alimento-tipo-animal')] + 'precio_alimento'), 10) * data.get('comprar-alimento-cantidad') * tipos_alimentos[data.get('comprar-alimento-calidad')];
   
-  if (alimento_precio + localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios') <= localStorage.getItem('granja-dinero')) {
-    let new_dinero = localStorage.getItem('granja-dinero') - alimento_precio;
+  if (alimento_precio + parseInt(localStorage.getItem('granja-empleados'), 10) * parseInt(localStorage.getItem('granja-salarios'), 10) <= parseInt(localStorage.getItem('granja-dinero'), 10)) {
+    let new_dinero = parseInt(localStorage.getItem('granja-dinero'), 10)) - alimento_precio;
     localStorage.setItem('granja-dinero', JSON.stringify(new_dinero));
-    let new_gastos = localStorage.getItem('granja-gastos') + alimento_precio;
+    let new_gastos = parseInt(localStorage.getItem('granja-gastos'), 10)) + alimento_precio;
     localStorage.setItem('granja-gastos', JSON.stringify(new_gastos)); 
     let new_alimentos = JSON.parse(localStorage.getItem('granja-alimentos'));
     new_alimentos[data.get('comprar-alimento-calidad')] += data.get('comprar-alimento-cantidad');
     localStorage.setItem('granja-alimentos', JSON.stringify(new_alimentos));
-    let gastos_final = localStorage.getItem('granja-gastos');
-    let dinero_final = localStorage.getItem('granja-dinero');
-    gastos_final += localStorage.getItem('granja-empleados') + localStorage.getItem('granja-salarios');
-    dinero_final += localStorage.getItem('granja-empleados') + localStorage.getItem('granja-salarios');
-
+    let gastos_final = parseInt(localStorage.getItem('granja-gastos'), 10));
+    let dinero_final = parseInt(localStorage.getItem('granja-dinero'), 10));
+    gastos_final += parseInt(localStorage.getItem('granja-empleados'), 10) * parseInt(localStorage.getItem('granja-salarios'), 10);
+    dinero_final += parseInt(localStorage.getItem('granja-empleados'), 10) * parseInt(localStorage.getItem('granja-salarios'), 10);
     localStorage.setItem('granja-gastos', JSON.stringify(gastos_final)); 
 		localStorage.setItem('granja-dinero', JSON.stringify(dinero_final));
   } else {
@@ -122,23 +121,23 @@ function comprarAgua(event) {
   event.preventDefault();
   var data = new FormData(document.getElementById('comprar-agua-form'));
 
-  if (data.get('comprar-agua-cantidad') * litro_agua <= localStorage.getItem('granja-dinero') && localStorage.getItem('granja-empleados') * localStorage.getItem('grnaja-salarios') <= localStorage.getItem('granja-dinero')) {
-    let new_dinero = localStorage.getItem('granja-dinero');
+  if (data.get('comprar-agua-cantidad') * litro_agua <= parseInt(localStorage.getItem('granja-dinero'), 10)) && parseInt(localStorage.getItem('granja-empleados'), 10) * parseInt(localStorage.getItem('granja-salarios'), 10) <= parseInt(localStorage.getItem('granja-dinero'), 10)) {
+    let new_dinero = parseInt(localStorage.getItem('granja-dinero'), 10));
     new_dinero -= data.get('comprar-agua-cantidad-litros') * litro_agua;
     localStorage.setItem('granja-dinero', JSON.stringify(new_dinero));
-    let new_gastos = localStorage.getItem('granja-gastos');
+    let new_gastos = parseInt(localStorage.getItem('granja-gastos'), 10));
     new_gastos += data.get('comprar-agua-cantidad-litros') * litro_agua;
     localStorage.setItem('granja-gastos', JSON.stringify(new_gastos));
-    let new_contenedor_agua = localStorage.getItem('granja-contenedor_agua');
+    let new_contenedor_agua = parseInt(localStorage.getItem('granja-contenedor_agua'), 10));
     new_contenedor_agua += data.get('comprar-agua-cantidad-litros');
     localStorage.setItem('granja-contenedor_agua', JSON.stringify(new_contenedor_agua));
-    let gastos_final = localStorage.getItem('granja-gastos');
-    let dinero_final = localStorage.getItem('granja-gastos');
-    gastos_final += localStorage.getItem('granja-empleados') + localStorage.getItem('granja-salarios');
-    dinero_final -= localStorage.getItem('granja-empleados') + localStorage.getItem('granja-salarios');
+    let gastos_final = parseInt(localStorage.getItem('granja-gastos'), 10));
+    let dinero_final = parseInt(localStorage.getItem('granja-dinero'), 10));
+    gastos_final += localStorage.getItem('granja-empleados'), 10) * parseInt(localStorage.getItem('granja-salarios'), 10);
+    dinero_final -= localStorage.getItem('granja-empleados'), 10) * parseInt(localStorage.getItem('granja-salarios'), 10);
 
-    localStorage.getItem('granja-gastos', JSON.stringify(gastos_final));
-    localStorage.getItem('granja-dinero', JSON.stringify(dinero_final));
+    localStorage.setItem('granja-gastos', JSON.stringify(gastos_final));
+    localStorage.setItem('granja-dinero', JSON.stringify(dinero_final));
 
   } else {
     alert('NO HAY SUFICIENTE DINERO ');
@@ -157,10 +156,10 @@ function darAgua(event) {
     return
   }
     
-  if (localStorage.getItem(tipos_alimentos[data.get('dar-agua-tipo-animal')] + 'agua') * localStorage.getItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'cantidad') <= localStorage.getItem('granja-contenedor_agua') {
+  if (parseInt(localStorage.getItem(tipos_alimentos[data.get('dar-agua-tipo-animal')] + 'agua'), 10) * parseInt(localStorage.getItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'cantidad'), 10) <= parseInt(localStorage.getItem('granja-contenedor_agua'), 10)) {
     localStorage.setItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'hidratado', JSON.stringify(true));;
-    let new_contenedor_agua = data.getItem('granja-contenedor_agua');
-    new_contenedor_agua -= loclaStorage.getItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'agua') * localStorage.getItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'cantidad');
+    let new_contenedor_agua = parseInt(localStorage.getItem('granja-contenedor_agua'), 10))
+    new_contenedor_agua -= parseInt(localStorage.getItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'agua'), 10) * parseInt(localStorage.getItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'cantidad'), 10);
     localStorage.setItem('granja-contenedor_agua', JSON.stringify(new_contenedor_agua));
       
   } else {
@@ -180,18 +179,18 @@ function alimentar(event) {
     return
   }
     
-	if (localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad') <= alimentos_[data.get('alimentar-calidad')] && localStorage.getItem('granja-dinero') >= localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios')) {
+	if (parseInt(localStorage.getItem(tipos_animales_[data.get('dar-agua-tipo-animal')] + 'cantidad'), 10) <= alimentos_[data.get('alimentar-calidad')] && parseInt(localStorage.getItem('granja-dinero'), 10) >= parseInt(localStorage.getItem('granja-empleados'), 10)) * parseInt(localStorage.getItem('granja-salarios'), 10) {
 		  
-		let new_nivel_alimentación = localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'nivel_alimentación');
-    new_nivel_alimentación += localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad') + tipos_alimentos_[data.get('alimentar-calidad')];
+		let new_nivel_alimentación = parseInt(localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'nivel_alimentación'), 10);
+    new_nivel_alimentación += parseInt(localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad'), 10) + tipos_alimentos_[data.get('alimentar-calidad')];
     localStorage.setItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'nivel_alimentación', JSON.stringify(new_nivel_alimentación));
-    let new_gastos = localStorage.getItem('granja-gastos');
-    new_gastos += localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
+    let new_gastos = parseInt(localStorage.getItem('granja-gastos'), 10);
+    new_gastos += parseInt(localStorage.getItem('granja-empleados'), 10)) * parseInt(localStorage.getItem('granja-salarios'), 10);
 		localStorage.setItem('granja-gastos', JSON.stringify(new_gastos));
-    let new_dinero = localStorage.getItem('granja-dinero');
-    new_dinero -= localStorage.getItem('granja-empleados') * localStorage.getItem('granja-salarios');
+    let new_dinero = parseInt(localStorage.getItem('granja-dinero'), 10);
+    new_dinero -= lparseInt(localStorage.getItem('granja-empleados'), 10)) * parseInt(localStorage.getItem('granja-salarios'), 10);
 		localStorage.setItem('granja-dinero', new_dinero);
-		alimentos_['alimentar-calidad'] -= localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad');
+		alimentos_['alimentar-calidad'] -= parseInt(localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad'), 10);
 		
 		if (localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'nivel_alimentación') >= localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'alimento') * localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'cantidad')) {
       let new_producto = localStorage.getItem(tipos_animales_[data.get('alimentar-tipo-animal')] + 'producto');
