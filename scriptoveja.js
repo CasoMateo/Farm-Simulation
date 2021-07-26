@@ -21,6 +21,12 @@ function getDataOveja(e) {
 
   e.preventDefault();
 
+  let attributes = ['nombre', 'color', 'sonido', 'alimento', 'precio_alimento', 'límite_producto', 'precio_producto', 'precio_reja', 'agua', 'nivel_alimentación', 'productos', 'cantidad', 'hidratado', 'alimentado'];
+
+  for (i = 0, i < attributes.length; i++) {
+    localStorage.removeItem('oveja-' + attributes[i]);
+  }
+
   crear_oveja.style.borderBottom = '2px solid  #dcdee0';
   
   for (i = 0; i < oveja_methods.length; i++) {
@@ -42,7 +48,7 @@ function getDataOveja(e) {
 function hacerSonido(event) {
   event.preventDefault();
 
-  if (localStorage.getItem('oveja-alimentado')) {
+  if (JSON.parse(localStorage.getItem('oveja-alimentado'))) {
     let new_alimentado = false; 
     localStorage.setItem('oveja-alimentado', JSON.stringify(new_alimentado));
 
@@ -57,7 +63,7 @@ function hacerSonido(event) {
 function mover(event) {
   event.preventDefault();
 
-  if (localStorage.getItem('oveja-alimentado')) {
+  if (JSON.parse(localStorage.getItem('oveja-alimentado'))) {
     let new_alimentado = false; 
     localStorage.setItem('oveja-alimentado', JSON.stringify(new_alimentado));
 
@@ -76,7 +82,7 @@ function mover(event) {
 function saltar(event) {
   event.preventDefault();
 
-  if (localStorage.getItem('oveja-hidratado')) {
+  if (JSON.parse(localStorage.getItem('oveja-hidratado'))) {
 
     let new_hidratado = false; 
     localStorage.setItem('oveja-hidratado', JSON.stringify(new_hidratado));
@@ -97,20 +103,20 @@ function reproducir(event) {
   event.preventDefault();
   var data = new FormData(document.getElementById('reproducir-oveja-form'));
 
-  if (localStorage.getItem('cantidad') >= 2) {
+  if (parseInt(localStorage.getItem('oveja-cantidad'), 10) >= 2) {
     if (data.get('reproducir-edad1') > 12 && data.get('reproducir-edad2') > 12) {
       if (data.get('reproducir-género1') != data.get('reproducir-género2')) {
-        let new_cantidad = localStorage.getItem('oveja-cantidad');
+        let new_cantidad = parseInt(localStorage.getItem('oveja-cantidad'), 10);
         new_cantidad += data.get('reproducir-cantidad');
         localStorage.setItem('oveja-cantidad', JSON.stringify(new_cantidad));
     }
   }
     
-  let new_granja_gastos = localStorage.getItem('granja-gastos');
-  new_granja_gastos += localStorage.getItem('granja-precio_reja') * data.get('reproducir-cantidad');
+  let new_granja_gastos = parseInt(localStorage.getItem('granja-gastos'), 10);
+  new_granja_gastos += parseInt(localStorage.getItem('granja-precio_reja'), 10); * data.get('reproducir-cantidad');
   localStorage.setItem('granja-gastos', JSON.stringify(new_granja_gastos));
-  let new_granja_dinero = localStorage.getItem('granja-dinero');
-  new_granja_dinero -= localStorage.getItem('granja-precio_reja') * data.get('reproducir-cantidad');
+  let new_granja_dinero = parseInt(localStorage.getItem('granja-dinero'), 10);
+  new_granja_dinero -= parseInt(localStorage.getItem('granja-precio_reja'), 10); * data.get('reproducir-cantidad');
   localStorage.setItem('granja-dinero', JSON.stringify(new_granja_dinero));
   
 }
