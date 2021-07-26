@@ -76,9 +76,9 @@
           <div class = 'dato'>
             <h6> Sonido </h6>
               
-              <label id = 'crear-vaca-sonido'>
-                <input type = 'text' name = 'crear-vaca-sonido' required>
-              </label>
+            <label id = 'crear-vaca-sonido'>
+              <input type = 'text' name = 'crear-vaca-sonido' required>
+            </label>
             
           </div>
 
@@ -94,52 +94,52 @@
           <div class = 'dato'>
             <h6> Precio de Alimento </h6>
               
-              <label id = 'crear-vaca-precio-alimento'>
-                <input type = 'text' name = 'crear-vaca-precio-alimento' required>
-              </label>
+            <label id = 'crear-vaca-precio-alimento'>
+              <input type = 'text' name = 'crear-vaca-precio-alimento' required>
+            </label>
               
-            </div>
+          </div>
 
-            <div class = 'dato'>
-              <h6> Límite de productos </h6>
+          <div class = 'dato'>
+            <h6> Límite de productos </h6>
               
-              <label id = 'crear-vaca-límite-productos'>
-                <input type = 'text' name = 'crear-vaca-límite-productos' required>
-              </label>
+            <label id = 'crear-vaca-límite-productos'>
+              <input type = 'text' name = 'crear-vaca-límite-productos' required>
+            </label>
               
-            </div>
+          </div>
 
-            <div class = 'dato'>
-              <h6> Precio de producto </h6>
+          <div class = 'dato'>
+            <h6> Precio de producto </h6>
               
-              <label id = 'crear-vaca-producto-precio'>
-                <input type = 'text' name = 'crear-vaca-producto-precio' required>
-              </label>
+            <label id = 'crear-vaca-producto-precio'>
+              <input type = 'text' name = 'crear-vaca-producto-precio' required>
+            </label>
             
-            </div>
+          </div>
 
-            <div class = 'dato'>
-              <h6> Precio de reja </h6>
+          <div class = 'dato'>
+            <h6> Precio de reja </h6>
             
-              <label id = 'crear-vaca-reja-precio'>
-                <input type = 'text' name = 'crear-vaca-reja-precio' required>
-              </label>
+            <label id = 'crear-vaca-reja-precio'>
+              <input type = 'text' name = 'crear-vaca-reja-precio' required>
+            </label>
       
-            </div>
+          </div>
 
-            <div class = 'dato'>
-              <h6> Necesidad de hidratación </h6>
+          <div class = 'dato'>
+            <h6> Necesidad de hidratación </h6>
               
-              <label id = 'crear-vaca-hidratación'>
-                <input type = 'text' name = 'crear-vaca-hidratación' required>
-              </label>
+            <label id = 'crear-vaca-hidratación'>
+              <input type = 'text' name = 'crear-vaca-hidratación' required>
+            </label>
         
-            </div>
+          </div>
 
       
-            <input id = 'submit-crear-vaca' class = 'submit' type = 'submit' value = 'submit' name = 'submit'>
+          <input onclick = 'getDataVaca(event)' id = 'submit-crear-vaca' class = 'submit' type = 'submit' value = 'submit' name = 'submit'>
 
-          </form>
+        </form>
 
         </div>
 
@@ -253,15 +253,6 @@
             
             </div>
 
-            <div class = 'dato'>
-              <h6> Nombre de la Granja </h6>
-            
-              <label id = 'reproducir-granja-nombre'>
-                <input type = 'text' name = 'reproducir-granja-nombre' required>
-              </label>
-              
-            </div>
-
             <input onclick = 'reproducir(event)' id = 'submit-reproducir-vaca' class = 'submit' type = 'submit' value = 'submit' name 'submit'>
 
           </form>
@@ -281,27 +272,23 @@
         </div> 
 
         <div class = 'properties'>
-          <button class = 'attribute'> 
+          <button id = 'nivel-alimentación'> 
             Nivel de Alimentación
           </button>
 
-          <button class = 'attribute'>
+          <button id = 'productos'>
             Productos
           </button>
 
-          <button class = 'attribute'>
+          <button id = 'cantidad'>
             Cantidad
           </button>
 
-          <button class = 'attribute'>
-            Productos
-          </button>
-
-          <button class = 'attribute'>
+          <button id = 'hidratado'>
             Hidratado
           </button>
 
-          <button class = 'attribute'>
+          <button id = 'alimentado'>
             Alimentado
           </button>
         </div>
