@@ -1,3 +1,4 @@
+
 const vaca = document.querySelector('.vaca-métodos');
 const vaca_methods = vaca.querySelectorAll('.método-nuevo');
 const crear_vaca = vaca.querySelector('#crear-vaca');
@@ -22,6 +23,12 @@ function getDataVaca(event) {
 
   event.preventDefault();
 
+  let attributes = ['nombre', 'color', 'sonido', 'alimento', 'precio_alimento', 'límite_producto', 'precio_producto', 'precio_reja', 'agua', 'nivel_alimentación', 'productos', 'cantidad', 'hidratado', 'alimentado'];
+
+  for (i = 0, i < attributes.length; i++) {
+    localStorage.removeItem('vaca-' + attributes[i]);
+  }
+
   crear_vaca.style.borderBottom = '2px solid  #dcdee0';
 
   for (i = 0; i < vaca_methods.length; i++) {
@@ -44,7 +51,7 @@ function hacerSonido(event) {
 
   event.preventDefault();
 
-  if (localStorage.getItem('vaca-alimentado')) {
+  if (JSON.parse(localStorage.getItem('vaca-alimentado'))) {
     let new_alimentado = false; 
     localStorage.setItem('vaca-alimentado', JSON.stringify(new_alimentado));
 
@@ -59,7 +66,7 @@ function hacerSonido(event) {
 function mover(event) {
   event.preventDefault();
 
-  if (localStorage.getItem('vaca-alimentado')) {
+  if (JSON.parse(localStorage.getItem('vaca-alimentado'))) {
     let new_alimentado = false; 
     localStorage.setItem('vaca-alimentado', JSON.stringify(new_alimentado));
 
@@ -78,7 +85,7 @@ function mover(event) {
 function saltar(event) {
   event.preventDefault();
 
-  if (localStorage.getItem('vaca-hidratado')) {
+  if (JSON.parse(localStorage.getItem('vaca-hidratado'))) {
 
     let new_hidratado = false; 
     localStorage.setItem('vaca-hidratado', JSON.stringify(new_hidratado));
@@ -99,10 +106,10 @@ function reproducir(event) {
   event.preventDefault();
   var data = new FormData(document.getElementById('reproducir-vaca-form'));
 
-  if (localStorage.getItem('vaca-cantidad') >= 2) {
+  if (parseInt(localStorage.getItem('vaca-cantidad'), 10) >= 2) {
     if (data.get('reproducir-edad1') > 12 && data.get('reproducir-edad2') > 12) {
       if (data.get('reproducir-género1') != data.get('reproducir-género2')) {
-        let new_cantidad = localStorage.getItem('vaca-cantidad');
+        let new_cantidad = parseInt(localStorage.getItem('vaca-cantidad'), 10)
         new_cantidad += data.get('reproducir-cantidad');
         localStorage.setItem('vaca-cantidad', JSON.stringify(new_cantidad));
       }
@@ -110,14 +117,13 @@ function reproducir(event) {
     
   }
   
-  let new_granja_gastos = localStorage.getItem('granja-gastos');
-  new_granja_gastos += localStorage.getItem('granja-precio_reja') * data.get('reproducir-cantidad');
+  let new_granja_gastos = parseInt(localStorage.getItem('granja-gastos'), 10);
+  new_granja_gastos += parseInt(localStorage.getItem('granja-precio_reja'), 10) * data.get('reproducir-cantidad');
   localStorage.setItem('granja-gastos', JSON.stringify(new_granja_gastos));
-  let new_granja_dinero = localStorage.getItem('granja-dinero');
-  new_granja_dinero -= localStorage.getItem('granja-precio_reja') * data.get('reproducir-cantidad');
+  let new_granja_dinero = parseInt(localStorage.getItem('granja-dinero'), 10);
+  new_granja_dinero -= parseInt(localStorage.getItem('granja-precio_reja'), 10); * data.get('reproducir-cantidad');
   localStorage.setItem('granja-dinero', JSON.stringify(new_granja_dinero)); 
 }
-
 
 nivel_alimentación_at.addEventListener('mouseover', function() {
   nivel_alimentación_at.innerText = localStorage.getItem('vaca-nivel_alimentación');
@@ -159,3 +165,6 @@ alimentado_at.addEventListener('mouseout', function() {
   alimentado_at.innerText = 'Alimentado';
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  vaca_submit.addEventListener('click', getDataVaca, false);  
+}, false);
